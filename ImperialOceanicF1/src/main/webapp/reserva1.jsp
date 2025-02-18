@@ -132,25 +132,7 @@
     </style>
 
 </head>
-<script>
-    document.querySelector("form").addEventListener("submit", function (event) {
-        let camposObligatorios = ["destino", "duracion", "tipo-camarote", "pasajeros", "nombre", "dni", "fecha-nacimiento", "telefono"];
-        let formularioValido = true;
 
-        for (let campo of camposObligatorios) {
-            let valor = document.getElementById(campo).value;
-            if (valor === "0" || valor.trim() === "") {
-                formularioValido = false;
-                break;
-            }
-        }
-
-        if (!formularioValido) {
-            event.preventDefault(); // Evita el envío del formulario
-            alert("Por favor, rellene todos los campos obligatorios.");
-        }
-    });
-</script>
 <body>
     <header id="cabecera" class="sticky-header">
       <div class="logo">
