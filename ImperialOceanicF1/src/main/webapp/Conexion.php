@@ -7,17 +7,13 @@ $username = "ulcpeik6z9ed9k6p";
 $password = "bfnlGrx8vXNofMtaHgQE";
 $dbname = "bppzhrdgz4ehcc5l7sem";
 
-// Conexión a la base de datos
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verificar conexión
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// Verificar si el formulario fue enviado
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Recibir y validar los datos
     $destino = $_POST['destino'] ?? '';
     $duracion = $_POST['duracion'] ?? '';
     $camarote = $_POST['tipo-camarote'] ?? '';
@@ -29,23 +25,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $fechanac = $_POST['fecha-nacimiento'] ?? '';
     $telefono = $_POST['telefono'] ?? '';
 
-    // Validación en PHP (básica)
     if (empty($destino) || empty($duracion) || empty($camarote) || empty($pasajeros) ||
         empty($nombre) || empty($dni_pasaporte) || empty($fechanac) || empty($telefono)) {
 
-        die("Por favor, completa todos los campos obligatorios.");
+        echo "<script>
+                alert('Por favor, completa todos los campos obligatorios.');
+                window.history.back();
+              </script>";
+        exit();
     }
 
-    // Preparar la consulta SQL para evitar inyección SQL
     $sql = "INSERT INTO ticket (destino, duracion, camarote, pasajeros, excursiones, servicios_extra, nombre, dni_pasaporte, fechanac, telefono)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param("ssssssssss", $destino, $duracion, $camarote, $pasajeros, $excursiones, $servicios_extra, $nombre, $dni_pasaporte, $fechanac, $telefono);
 
-        // Ejecutar la consulta
         if ($stmt->execute()) {
-            echo "<script>alert('Reserva exitosa. Redirigiendo...'); window.location.href='reserva3.jsp';</script>";
+            header("Location: reserva3.jsp");
+            exit();
         } else {
             echo "Error al guardar los datos: " . $stmt->error;
         }
@@ -56,6 +54,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-// Cerrar la conexión
 $conn->close();
 ?>
