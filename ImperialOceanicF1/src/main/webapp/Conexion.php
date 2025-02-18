@@ -12,51 +12,49 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Obtener datos del formulario
-$destino = $_GET['destino'] ?? '';
-$duracion = $_GET['duracion'] ?? '';
-$camarote = $_GET['tipo-camarote'] ?? '';
-$pasajeros = $_GET['pasajeros'] ?? '';
-$excursiones = $_GET['excursiones'] ?? '';
-$servicios_extra = $_GET['servicios-extra'] ?? '';
-$nombre = $_GET['nombre'] ?? '';
-$dni_pasaporte = $_GET['dni'] ?? '';
-$fechanac = $_GET['fecha-nacimiento'] ?? '';
-$telefono = $_GET['telefono'] ?? '';
+// Validar que los datos vengan por POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener datos del formulario de manera segura
+    $destino = $_POST['destino'] ?? '';
+    $duracion = $_POST['duracion'] ?? '';
+    $camarote = $_POST['tipo-camarote'] ?? '';
+    $pasajeros = $_POST['pasajeros'] ?? '';
+    $excursiones = $_POST['excursiones'] ?? '';
+    $servicios_extra = $_POST['servicios-extra'] ?? '';
+    $nombre = $_POST['nombre'] ?? '';
+    $dni_pasaporte = $_POST['dni'] ?? '';
+    $fechanac = $_POST['fecha-nacimiento'] ?? '';
+    $telefono = $_POST['telefono'] ?? '';
 
-// Preparar la consulta SQL
-$sql = "INSERT INTO ticket (destino, duracion, camarote, pasajeros, excursiones, servicios_extra, nombre, dni_pasaporte, fechanac, telefono)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ssssssssss", $destino, $duracion, $camarote, $pasajeros, $excursiones, $servicios_extra, $nombre, $dni_pasaporte, $fechanac, $telefono);
+    // Validación en PHP para evitar datos vacíos
+    if (empty($destino) || empty($duracion) || empty($camarote) || empty($pasajeros) ||
+        empty($nombre) || empty($dni_pasaporte) || empty($fechanac) || empty($telefono)) {
 
-// Ejecutar la consulta
-if ($stmt->execute()) {
-    header("Location: reserva3.jsp");
-    exit();
-} else {
-  <script>
-      document.querySelector("form").addEventListener("submit", function (event) {
-          let camposObligatorios = ["destino", "duracion", "tipo-camarote", "pasajeros", "nombre", "dni", "fecha-nacimiento", "telefono"];
-          let formularioValido = true;
+        die("Error: Todos los campos obligatorios deben ser completados.");
+    }
 
-          for (let campo of camposObligatorios) {
-              let valor = document.getElementById(campo).value;
-              if (valor === "0" || valor.trim() === "") {
-                  formularioValido = false;
-                  break;
-              }
-          }
+    // Preparar la consulta SQL
+    $sql = "INSERT INTO ticket (destino, duracion, camarote, pasajeros, excursiones, servicios_extra, nombre, dni_pasaporte, fechanac, telefono)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-          if (!formularioValido) {
-              event.preventDefault(); // Evita el envío del formulario
-              alert("Por favor, rellene todos los campos obligatorios.");
-          }
-      });
-  </script>
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("ssssssssss", $destino, $duracion, $camarote, $pasajeros, $excursiones, $servicios_extra, $nombre, $dni_pasaporte, $fechanac, $telefono);
+
+        // Ejecutar la consulta
+        if ($stmt->execute()) {
+            // Redirigir si la inserción fue exitosa
+            header("Location: reserva3.jsp");
+            exit();
+        } else {
+            echo "Error en la inserción: " . $stmt->error;
+        }
+
+        $stmt->close();
+    } else {
+        echo "Error al preparar la consulta.";
+    }
 }
 
 // Cerrar la conexión
-$stmt->close();
 $conn->close();
 ?>
