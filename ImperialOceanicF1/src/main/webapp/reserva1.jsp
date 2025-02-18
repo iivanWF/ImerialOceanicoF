@@ -73,6 +73,27 @@
             color: black;
         }
 
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: transparent;
+            padding: 10px 20px;
+            z-index: 1000;
+        }
+
         .submit-btn {
             display: block;
             width: auto;
@@ -109,9 +130,33 @@
             }
         }
     </style>
-    
+
 </head>
-<body>	
+<script>
+    document.querySelector("form").addEventListener("submit", function (event) {
+        let camposObligatorios = ["destino", "duracion", "tipo-camarote", "pasajeros", "nombre", "dni", "fecha-nacimiento", "telefono"];
+        let formularioValido = true;
+
+        for (let campo of camposObligatorios) {
+            let valor = document.getElementById(campo).value;
+            if (valor === "0" || valor.trim() === "") {
+                formularioValido = false;
+                break;
+            }
+        }
+
+        if (!formularioValido) {
+            event.preventDefault(); // Evita el envío del formulario
+            alert("Por favor, rellene todos los campos obligatorios.");
+        }
+    });
+</script>
+<body>
+    <header id="cabecera" class="sticky-header">
+      <div class="logo">
+        <a href="index.php"><img src="image/logon.png" alt="Logo"></a>
+      </div>
+    </header>
     <div class="hero">
         <h1>Reserva ahora tu crucero</h1>
     </div>
@@ -175,7 +220,7 @@
 	                <option value="80">Excursion de Naturaleza - 80$</option>
 	                <option value="65">Excursion Relax - 65$</option>
             	</select>
-            
+
                 <label for="servicios-extra">Servicios extra</label>
                 <select id="servicios-extra" name="servicios-extra" onchange="actualizarPrecio()">
 	                <option value="0" selected>SELECCIONA</option>
@@ -219,7 +264,7 @@
         let excursion = parseInt(document.getElementById("excursiones").value) || 0;
         let servicioExtra = parseInt(document.getElementById("servicios-extra").value) || 0;
         let pasajeros = parseFloat(document.getElementById("pasajeros").value) ||0;
-    
+
         let precioTotal = (destino + camarote + excursion + servicioExtra) * duracion * pasajeros;
         document.getElementById("precio-actual").textContent = precioTotal + "$";
     }

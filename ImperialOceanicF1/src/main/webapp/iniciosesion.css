@@ -30,7 +30,7 @@ label {
     display: block;
     margin-bottom: 10px; /* Añadir más espacio abajo */
     font-weight: 300; /* Hacer las letras más finas */
-    
+
 }
 input[type="text"], input[type="email"], input[type="password"], select {
     width: 100%;
@@ -53,8 +53,29 @@ button {
     cursor: pointer;
     font-weight: 300; /* Hacer las letras más finas */
 
-    
+
 }
 button:hover {
     background-color: #333;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    padding: 10px 20px;
+    z-index: 1000;
 }

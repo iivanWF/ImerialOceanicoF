@@ -58,3 +58,24 @@ button {
 button:hover {
     background-color: #333;
 }
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    padding: 10px 20px;
+    z-index: 1000;
+}

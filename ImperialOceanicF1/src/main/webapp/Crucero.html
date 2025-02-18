@@ -12,7 +12,7 @@
         <div class="header-container">
             <!-- Logo y traductor -->
             <div class="logo">
-                <img src="image/logo.png" alt="Logo">
+                <a href="index.php"><img src="image/logon.png" alt="Logo"></a>
             </div>
             <div id="google_translate_element"></div>
             <!-- Menú y registro -->
@@ -106,7 +106,7 @@ cultura, relax y paisajes inolvidables.
                     <input type="email" id="email" placeholder="Correo electrónico" />
                     <button type="submit">ENVIAR</button>
                 </div>
-                <div class="map-container">
+                <div class="map-containe">
                     <a href="https://www.google.com/maps/place/C.+del+Puerto+de+Barcelona,+28821+Coslada,+Madrid/@40.4194595,-3.5771,17z/data=!3m1!4b1!4m10!1m2!2m1!1sPuerto+de+Barcelona,+nº+657.!3m6!1s0xd42300635429b5b:0x1bcc82e27af00f5e!8m2!3d40.4194596!4d-3.5722344!15sCh1QdWVydG8gZGUgQmFyY2Vsb25hLCBuwrogNjU3LpIBBXJvdXRl4AEA!16s%2Fg%2F1tqnmyn0?entry=ttu&g_ep=EgoyMDI1MDExNS4wIKXMDSoASAFQAw%3D%3D"><img src="image/PuertoDeBarcelona.png" alt="Mapa de ubicación" /></a>
                 </div>
             </div>
@@ -136,6 +136,9 @@ cultura, relax y paisajes inolvidables.
                 title: location.title,
             });
         });
+        setTimeout(() => {
+        google.maps.event.trigger(map, "resize");
+    }, 500);
     }
 
     // Se ejecuta initMap() cuando la página ha cargado completamente

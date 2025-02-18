@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-image: url('image/imgContacto.jpg');
+    background-image: url('image/crucerox.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -234,7 +234,7 @@ footer .social-icons {
 
 }
 footer .cajas-container h2 {
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
     font-size: 18px;
     color: white;
     text-transform: uppercase;

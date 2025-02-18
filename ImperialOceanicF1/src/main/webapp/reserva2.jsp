@@ -30,6 +30,27 @@
             border-radius: 0;
         }
 
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: transparent;
+            padding: 10px 20px;
+            z-index: 1000;
+        }
+
         .form-container {
             display: flex;
             justify-content: space-between;
@@ -98,6 +119,11 @@
     </style>
 </head>
 <body>
+    <header id="cabecera" class="sticky-header">
+      <div class="logo">
+        <a href="index.php"><img src="image/logon.png" alt="Logo"></a>
+      </div>
+    </header>
     <div class="hero">
         <h1>Confirmacion de reserva</h1>
     </div>
