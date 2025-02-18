@@ -12,7 +12,7 @@
         }
 
         .hero {
-            background: url('https://www.travelandtourworld.com/wp-content/uploads/2024/12/cruise-ships1-1.jpg') no-repeat center center/cover;
+            background: url('image/crucerox.jpg') no-repeat center center/cover;
             height: 400px;
             display: flex;
             justify-content: center;
