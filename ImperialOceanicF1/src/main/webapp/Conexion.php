@@ -1,20 +1,23 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 $servername = "bppzhrdgz4ehcc5l7sem-mysql.services.clever-cloud.com";
 $username = "ulcpeik6z9ed9k6p";
 $password = "bfnlGrx8vXNofMtaHgQE";
 $dbname = "bppzhrdgz4ehcc5l7sem";
 
-// Crear conexión
+// Conexión a la base de datos
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Verificar conexión
 if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
+    die("Error de conexión: " . $conn->connect_error);
 }
 
-// Validar que los datos vengan por POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener datos del formulario de manera segura
+// Verificar si el formulario fue enviado
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Recibir y validar los datos
     $destino = $_POST['destino'] ?? '';
     $duracion = $_POST['duracion'] ?? '';
     $camarote = $_POST['tipo-camarote'] ?? '';
@@ -26,14 +29,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fechanac = $_POST['fecha-nacimiento'] ?? '';
     $telefono = $_POST['telefono'] ?? '';
 
-    // Validación en PHP para evitar datos vacíos
+    // Validación en PHP (básica)
     if (empty($destino) || empty($duracion) || empty($camarote) || empty($pasajeros) ||
         empty($nombre) || empty($dni_pasaporte) || empty($fechanac) || empty($telefono)) {
 
-        die("Error: Todos los campos obligatorios deben ser completados.");
+        die("Por favor, completa todos los campos obligatorios.");
     }
 
-    // Preparar la consulta SQL
+    // Preparar la consulta SQL para evitar inyección SQL
     $sql = "INSERT INTO ticket (destino, duracion, camarote, pasajeros, excursiones, servicios_extra, nombre, dni_pasaporte, fechanac, telefono)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -42,11 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Ejecutar la consulta
         if ($stmt->execute()) {
-            // Redirigir si la inserción fue exitosa
-            header("Location: reserva3.jsp");
-            exit();
+            echo "<script>alert('Reserva exitosa. Redirigiendo...'); window.location.href='reserva3.jsp';</script>";
         } else {
-            echo "Error en la inserción: " . $stmt->error;
+            echo "Error al guardar los datos: " . $stmt->error;
         }
 
         $stmt->close();

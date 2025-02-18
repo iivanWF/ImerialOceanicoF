@@ -144,7 +144,7 @@
     </div>
 
     <!-- Formulario con acción a reserva2.jsp -->
-    <form action="Conexion.php" method="Get">
+    <form action="Conexion.php" method="POST">
         <div class="form-container">
             <div class="form-section">
                 <h2>Seleccion de crucero</h2>
