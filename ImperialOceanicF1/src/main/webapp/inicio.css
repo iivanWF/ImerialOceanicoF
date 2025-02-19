@@ -16,7 +16,7 @@ video {
     height: 100px; /* Aumenta la altura si es necesario */
     position: relative;
     background-color: transparent;
-    margin-top: 30px; /* Ajusta el margen superior según necesites */
+    margin-top: 15px; /* Ajusta el margen superior según necesites */
 }
 
 .header-container .actions ul li {
