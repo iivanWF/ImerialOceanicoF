@@ -63,6 +63,7 @@ session_start();
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
+  <br>
 <div id="central">
     <header id="cabecera" class="sticky-header">
         <div class="header-container">
@@ -109,7 +110,7 @@ session_start();
     <div class="text-img">
         <h1 class="title">EL MEJOR REGALO PARA NAVIDAD</h1>
         <p class="subtitle">Invierno 2024-25 y Verano 2025</p>
-        <a href="suites.html" class="boton">Reserva Ahora</a>
+        <a href="reserva1.jsp" class="boton">Reserva Ahora</a>
     </div>
 </div>
 <div class="containeres">
@@ -142,7 +143,7 @@ session_start();
         <div class="cont">
             <h3>Excursiones exclusivas</h3>
             <p>Explora destinos culturales y paisajes exóticos con excursiones privadas diseñadas a tu medida.</p>
-            <a href="destinos.html">DESCUBRE NUESTROS DESTINOS</a>
+            <a href="suites.html">DESCUBRE NUESTROS DESTINOS</a>
         </div>
     </div>
 </div>
