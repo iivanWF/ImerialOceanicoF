@@ -12,7 +12,7 @@ video {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 20px; /* Agrega más espacio arriba */
+    padding: 10px 10px; /* Agrega más espacio arriba */
     height: 100px; /* Aumenta la altura si es necesario */
     position: relative;
     background-color: transparent;
