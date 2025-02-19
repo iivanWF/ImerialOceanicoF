@@ -131,6 +131,27 @@
         }
     </style>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Restringir la fecha de nacimiento a hoy o antes
+            let today = new Date().toISOString().split("T")[0];
+            document.getElementById("fecha-nacimiento").setAttribute("max", today);
+
+            // Validar el número de teléfono
+            document.getElementById("telefono").addEventListener("input", function (event) {
+                this.value = this.value.replace(/\D/g, ""); // Permitir solo números
+            });
+
+            document.querySelector("form").addEventListener("submit", function (event) {
+                let phone = document.getElementById("telefono").value;
+                if (phone.length !== 9) {
+                    alert("El número de teléfono debe tener exactamente 9 dígitos.");
+                    event.preventDefault(); // Evitar el envío del formulario
+                }
+            });
+        });
+    </script>
+
 </head>
 
 <body>
@@ -218,16 +239,16 @@
                 <h2>Informacion personal</h2>
                 <hr class="separator">
                 <label for="nombre">Nombre completo*</label>
-                <input type="text" id="nombre" name="nombre" onchange="actualizarPrecio()">
+                <input type="text" id="nombre" name="nombre">
 
                 <label for="dni">DNI/Pasaporte*</label>
-                <input type="text" id="dni" name="dni" onchange="actualizarPrecio()">
+                <input type="text" id="dni" name="dni">
 
                 <label for="fecha-nacimiento">Fecha de nacimiento*</label>
-                <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" onchange="actualizarPrecio()">
+                <input type="date" id="fecha-nacimiento" name="fecha-nacimiento">
 
                 <label for="telefono">Numero de telefono*</label>
-                <input type="tel" id="telefono" name="telefono" onchange="actualizarPrecio()">
+                <input type="tel" id="telefono" name="telefono" maxlength="9">
             </div>
         </div>
 
