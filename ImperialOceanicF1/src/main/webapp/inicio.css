@@ -13,7 +13,7 @@ video {
     justify-content: space-between;
     align-items: center;
     padding: 0px 20px; /* Agrega más espacio arriba */
-    height: 80px; /* Aumenta la altura si es necesario */
+    height: 50px; /* Aumenta la altura si es necesario */
     position: relative;
     background-color: transparent;
     margin-top: 10px; /* Ajusta el margen superior según necesites */
