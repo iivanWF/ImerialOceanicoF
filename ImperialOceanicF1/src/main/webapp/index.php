@@ -9,6 +9,58 @@ session_start();
     <script src="https://kit.fontawesome.com/f282478839.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="inicio.css">
+
+    <script>
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'es',
+                    includedLanguages: 'es,en,it,fr,ru,ar,ja,ko,hi',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
+
+                const savedLang = localStorage.getItem('selectedLanguage');
+                if (savedLang) {
+                    setTimeout(() => {
+                        const combo = document.querySelector('.goog-te-combo');
+                        if (combo) {
+                            combo.value = savedLang;
+                            combo.dispatchEvent(new Event('change'));
+                        }
+                    }, 500);
+                }
+            }
+
+            document.addEventListener('change', function(e) {
+                if (e.target && e.target.classList.contains('goog-te-combo')) {
+                    const selectedLang = e.target.value;
+                    localStorage.setItem('selectedLanguage', selectedLang);
+                }
+            });
+        </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const select = document.getElementById('language-select');
+
+            select.addEventListener('change', () => {
+                const googleSelect = document.querySelector('select.goog-te-combo');
+                if (googleSelect) {
+                    googleSelect.value = select.value;
+                    googleSelect.dispatchEvent(new Event('change'));
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("scroll", () => {
+            const header = document.querySelector(".sticky-header");
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
 <div id="central">
@@ -57,7 +109,7 @@ session_start();
     <div class="text-img">
         <h1 class="title">EL MEJOR REGALO PARA NAVIDAD</h1>
         <p class="subtitle">Invierno 2024-25 y Verano 2025</p>
-        <a href="destinos.html" class="boton">Reserva Ahora</a>
+        <a href="suites.html" class="boton">Reserva Ahora</a>
     </div>
 </div>
 <div class="containeres">
@@ -80,7 +132,7 @@ session_start();
         <div class="cont">
             <h3>Grastronomía</h3>
             <p>Disfruta de menús exclusivos creados por chefs de renombre, con ingredientes frescos y opciones para todos los paladares.</p>
-            <a href="reserva1.jsp">EXPLORA NUESTRA EXPERIENCIA CULINARIA</a>
+            <a href="suites.html">EXPLORA NUESTRA EXPERIENCIA CULINARIA</a>
         </div>
     </div>
     <div class="card">
@@ -154,36 +206,3 @@ session_start();
 </footer>
 </body>
 </html>
-<script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'es',
-            includedLanguages: 'es,en,it,fr,ru,ar,ja,ko,hi',
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-        }, 'google_translate_element');
-    }
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const select = document.getElementById('language-select');
-
-        select.addEventListener('change', () => {
-            const googleSelect = document.querySelector('select.goog-te-combo');
-            if (googleSelect) {
-                googleSelect.value = select.value;
-                googleSelect.dispatchEvent(new Event('change'));
-            }
-        });
-    });
-</script>
-<script>
-    document.addEventListener("scroll", () => {
-        const header = document.querySelector(".sticky-header");
-        if (window.scrollY > 50) {
-            header.classList.add("scrolled");
-        } else {
-            header.classList.remove("scrolled");
-        }
-    });
-</script>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
