@@ -4,21 +4,21 @@ body {
 }
 
 video {
-            width: 100%;
-            height: 40%;
-        }
+    width: 100%;
+    height: 40%;
+}
 
-
-/
 .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    height: 80px;
+    padding: 20px 20px; /* Agrega más espacio arriba */
+    height: 100px; /* Aumenta la altura si es necesario */
     position: relative;
     background-color: transparent;
+    margin-top: 30px; /* Ajusta el margen superior según necesites */
 }
+
 .header-container .actions ul li {
     color: #ffffff;
     list-style: none;
@@ -93,6 +93,7 @@ video {
 .actions .reg a:hover {
     background-color: #8EB5E1;
 }
+
 .sticky-header {
     position: fixed;
     top: 0;
@@ -112,7 +113,8 @@ video {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 20px 20px;
+    margin-top: 30px;
 }
 
 .sticky-header .nav ul {
@@ -137,7 +139,7 @@ video {
 
 
 .hero {
-    background: url('image/background-placeholder.jpg') no-repeat center center; 
+    background: url('image/background-placeholder.jpg') no-repeat center center;
     background-size: cover;
     height: 500px;
     display: flex;

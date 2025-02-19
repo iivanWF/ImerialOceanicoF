@@ -63,7 +63,6 @@ session_start();
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
-  <br>
 <div id="central">
     <header id="cabecera" class="sticky-header">
         <div class="header-container">
