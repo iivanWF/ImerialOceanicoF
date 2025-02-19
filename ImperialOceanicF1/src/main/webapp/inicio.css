@@ -12,11 +12,11 @@ video {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 10px; /* Agrega más espacio arriba */
+    padding: 5px 5px; /* Agrega más espacio arriba */
     height: 100px; /* Aumenta la altura si es necesario */
     position: relative;
     background-color: transparent;
-    margin-top: 15px; /* Ajusta el margen superior según necesites */
+    margin-top: 10px; /* Ajusta el margen superior según necesites */
 }
 
 .header-container .actions ul li {
