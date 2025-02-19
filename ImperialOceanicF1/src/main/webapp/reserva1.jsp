@@ -132,25 +132,28 @@
     </style>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Restringir la fecha de nacimiento a hoy o antes
-            let today = new Date().toISOString().split("T")[0];
-            document.getElementById("fecha-nacimiento").setAttribute("max", today);
+    document.addEventListener("DOMContentLoaded", function () {
+        let today = new Date().toISOString().split("T")[0];
+        document.getElementById("fecha-nacimiento").setAttribute("max", today);
 
-            // Validar el número de teléfono
-            document.getElementById("telefono").addEventListener("input", function (event) {
-                this.value = this.value.replace(/\D/g, ""); // Permitir solo números
-            });
+        let telefonoInput = document.getElementById("telefono");
+        telefonoInput.addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, "");
 
-            document.querySelector("form").addEventListener("submit", function (event) {
-                let phone = document.getElementById("telefono").value;
-                if (phone.length !== 9) {
-                    alert("El número de teléfono debe tener exactamente 9 dígitos.");
-                    event.preventDefault(); // Evitar el envío del formulario
-                }
-            });
+            if (this.value.length > 9) {
+                this.value = this.value.slice(0, 9);
+            }
         });
-    </script>
+
+        document.querySelector("form").addEventListener("submit", function (event) {
+            let phone = telefonoInput.value;
+            if (phone.length !== 9) {
+                alert("El número de teléfono debe tener exactamente 9 dígitos.");
+                event.preventDefault(); // Evitar el envío del formulario
+            }
+        });
+    });
+</script>
 
 </head>
 
